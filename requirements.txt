@@ -1,5 +1,4 @@
-streamlit==1.28.0       # versão estável do Streamlit
-pandas>=2.0.0           # para manipulação de dados
-plotly>=5.15.0          # para gráficos interativos
-ydata-profiling>=5.2.0  # para geração de relatórios de perfil de dados
-numpy>=1.24.0           # necessário para pandas e cálculos
+streamlit>=1.28.0
+pandas>=2.0.0
+plotly>=5.15.0
+numpy>=1.24.0
