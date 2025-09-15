@@ -1,0 +1,8 @@
+{
+    "python.defaultInterpreterPath": "/usr/local/Caskroom/miniconda/base/envs/py312/bin/python",
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": []
+}
