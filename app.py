@@ -14,10 +14,10 @@ def load_data(path='data/sales.csv'):
 
 df = load_data()
 
-st.title(' 📊 Dashboard de Vendas')
+st.title('📊 Dashboard de Vendas')
 
 # Sidebar Filtros
-st.sidebar.header('Filtros')
+st.sidebar.header('🧮 Filtros')
 min_date = df['date'].min().date()
 max_date = df['date'].max().date()
 date_range = st.sidebar.date_input('📆 Intervalo de datas', [min_date, max_date])
@@ -43,12 +43,12 @@ filtered = df.loc[mask].copy()
 # KPIs
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric('Faturamento (R$)', f"{filtered['sales'].sum():,.2f}")
+    st.metric('💵 Faturamento (R$)', f"{filtered['sales'].sum():,.2f}")
 with col2:
-    st.metric('Pedidos', int(filtered['order_id'].nunique()))
+    st.metric('📱 Pedidos', int(filtered['order_id'].nunique()))
 with col3:
     ticket = filtered['sales'].sum() / max(1, filtered['order_id'].nunique())
-    st.metric('Ticket médio (R$)', f"{ticket:,.2f}")
+    st.metric('📈 Ticket médio (R$)', f"{ticket:,.2f}")
 
 st.markdown('---')
 
