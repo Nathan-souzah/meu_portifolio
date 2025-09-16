@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
-st.set_page_config(page_title='Dashboard Vendas', layout='wide')
+st.set_page_config(page_title='📊 Dashboard Vendas', layout='wide')
 
 # Carregar dados
 @st.cache_data
@@ -14,14 +14,14 @@ def load_data(path='data/sales.csv'):
 
 df = load_data()
 
-st.title('Dashboard de Vendas')
+st.title(' 📊 Dashboard de Vendas')
 
 # Sidebar Filtros
 st.sidebar.header('Filtros')
 min_date = df['date'].min().date()
 max_date = df['date'].max().date()
-date_range = st.sidebar.date_input('Intervalo de datas', [min_date, max_date])
-region = st.sidebar.multiselect('Região', options=sorted(df['region'].unique()), default=[])
+date_range = st.sidebar.date_input('📆 Intervalo de datas', [min_date, max_date])
+region = st.sidebar.multiselect('🌎 Região', options=sorted(df['region'].unique()), default=[])
 
 # Garantir que date_range tenha 2 datas
 if isinstance(date_range, datetime):
@@ -29,7 +29,7 @@ if isinstance(date_range, datetime):
 elif len(date_range) == 2:
     start, end = pd.to_datetime(date_range[0]), pd.to_datetime(date_range[1])
 else:
-    st.error("Selecione um intervalo de datas válido.")
+    st.error("❌Selecione um intervalo de datas válido.")
     st.stop()
 
 # Aplicar filtros
@@ -55,13 +55,13 @@ st.markdown('---')
 # Série temporal
 sales_by_day = filtered.groupby('date', as_index=False)['sales'].sum()
 if sales_by_day.empty:
-    st.warning('Sem dados para o período selecionado.')
+    st.warning('❌ Sem dados para o período selecionado.')
 else:
-    fig = px.line(sales_by_day, x='date', y='sales', title='Vendas por dia', markers=True)
+    fig = px.line(sales_by_day, x='date', y='sales', title='💵 Vendas por dia', markers=True)
     st.plotly_chart(fig, use_container_width=True)
 
 # Top produtos
-st.subheader('Top produtos')
+st.subheader('🥇 Top produtos')
 top_produtos = (
     filtered.groupby('product', as_index=False)
     .agg(total_sales=('sales','sum'), total_qty=('quantity', 'sum'))
@@ -71,4 +71,4 @@ st.dataframe(top_produtos)
 
 # Download dados filtrados
 csv = filtered.to_csv(index=False)
-st.download_button('Baixar dados filtrados (CSV)', csv, file_name='sales_filtered.csv', mime='text/csv')
+st.download_button('⬇️ Baixar dados filtrados (CSV)', csv, file_name='sales_filtered.csv', mime='text/csv')
