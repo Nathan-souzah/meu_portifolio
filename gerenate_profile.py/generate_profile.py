@@ -1,13 +1,14 @@
 #generate_profile.py
 
+
 import pandas as pd
 import json
 import numpy as np
 import warnings
 
-# Corrige compatibilidade com NumPy >= 2.0 (Python 3.13)
+# Corrige compatibilidade: numpy >= 2.0 removeu VisibleDeprecationWarning
 if not hasattr(np, "VisibleDeprecationWarning"):
-    np.VisibleDeprecationWarning = np.VisibleDeprecationWarning if "VisibleDeprecationWarning" in dir(warnings) else np.ComplexWarning
+    np.VisibleDeprecationWarning = DeprecationWarning
 
 import sweetviz as sv
 
